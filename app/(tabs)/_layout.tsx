@@ -1,45 +1,87 @@
-import { Tabs } from 'expo-router';
+// app/(tabs)/_layout.tsx
 import React from 'react';
-import { Platform } from 'react-native';
+import { View, Text } from 'react-native';
+import { Tabs } from 'expo-router';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+    <View style={{ flex: 1 }}>
+      {/* Общий header на всех экранах табов */}
+      <View
+        style={{
+          height: 60,
+          backgroundColor: '#fff',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderBottomWidth: 1,
+          borderBottomColor: '#d1d1d1',
+        }}
+      >
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>AI Stylist</Text>
+      </View>
+
+      {/* Само таб-меню */}
+      <Tabs
+        screenOptions={{
+          headerShown: false, // наш header выше, поэтому скрываем встроенный заголовок
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            backgroundColor: '#fff',
+            borderTopColor: '#d1d1d1',
+            height: 60,
           },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="wardrobe"
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Text style={{ fontSize: 24 }}>
+                {focused ? '👗' : '👗'}
+              </Text>
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="camera"
+          options={{
+            tabBarIcon: () => (
+              <View
+                style={{
+                  position: 'absolute',
+                  bottom: 15,
+                  alignSelf: 'center',
+                  width: 70,
+                  height: 70,
+                  borderRadius: 35,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: '#007bff',
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 10 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 5,
+                  elevation: 5,
+                }}
+              >
+                <Text style={{ fontSize: 30, color: '#fff' }}>📷</Text>
+              </View>
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="profile"
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Text style={{ fontSize: 24 }}>
+                {focused ? '👤' : '👤'}
+              </Text>
+            ),
+          }}
+        />
+      </Tabs>
+    </View>
   );
 }

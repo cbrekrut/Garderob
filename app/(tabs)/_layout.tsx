@@ -1,87 +1,79 @@
-// app/(tabs)/_layout.tsx
+// app/_layout.tsx
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
+import { WardrobeProvider } from '../context/WardrobeContext';
+import tw from 'twrnc';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export default function TabsLayout() {
+export default function RootLayout() {
   return (
-    <View style={{ flex: 1 }}>
-      {/* Общий header на всех экранах табов */}
-      <View
-        style={{
-          height: 60,
-          backgroundColor: '#fff',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderBottomWidth: 1,
-          borderBottomColor: '#d1d1d1',
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>AI Stylist</Text>
+    <WardrobeProvider>
+      <View style={tw`flex-1`}>
+        {/* Header с градиентом */}
+        <LinearGradient
+          colors={['#000000', '#333333']}
+          style={tw`h-16 justify-center items-center`}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <Text style={tw`text-xl font-extrabold text-white`}>
+            AI Stylist
+          </Text>
+        </LinearGradient>
+
+        {/* Нижнее таб-меню */}
+        <Tabs
+          screenOptions={{
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarStyle: tw`bg-black border-t border-gray-800 h-16`,
+          }}
+        >
+          <Tabs.Screen
+            name="wardrobe"
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Ionicons
+                  name={focused ? 'color-palette' : 'color-palette-outline'}
+                  size={28}
+                  color={focused ? '#fff' : '#555'}
+                />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="camera"
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View style={tw`relative`}>
+                  <View
+                    style={[
+                      tw`absolute -top-4 left-1/2 w-16 h-16 rounded-full bg-black flex justify-center items-center shadow-xl`,
+                      { transform: [{ translateX: -32 }] },
+                    ]}
+                  >
+                    <Ionicons name="camera" size={32} color="#fff" />
+                  </View>
+                </View>
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="profile"
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Ionicons
+                  name={focused ? 'person' : 'person-outline'}
+                  size={28}
+                  color={focused ? '#fff' : '#555'}
+                />
+              ),
+            }}
+          />
+        </Tabs>
       </View>
-
-      {/* Само таб-меню */}
-      <Tabs
-        screenOptions={{
-          headerShown: false, // наш header выше, поэтому скрываем встроенный заголовок
-          tabBarShowLabel: false,
-          tabBarStyle: {
-            backgroundColor: '#fff',
-            borderTopColor: '#d1d1d1',
-            height: 60,
-          },
-        }}
-      >
-        <Tabs.Screen
-          name="wardrobe"
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Text style={{ fontSize: 24 }}>
-                {focused ? '👗' : '👗'}
-              </Text>
-            ),
-          }}
-        />
-
-        <Tabs.Screen
-          name="camera"
-          options={{
-            tabBarIcon: () => (
-              <View
-                style={{
-                  position: 'absolute',
-                  bottom: 15,
-                  alignSelf: 'center',
-                  width: 70,
-                  height: 70,
-                  borderRadius: 35,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#007bff',
-                  shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 10 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 5,
-                  elevation: 5,
-                }}
-              >
-                <Text style={{ fontSize: 30, color: '#fff' }}>📷</Text>
-              </View>
-            ),
-          }}
-        />
-
-        <Tabs.Screen
-          name="profile"
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Text style={{ fontSize: 24 }}>
-                {focused ? '👤' : '👤'}
-              </Text>
-            ),
-          }}
-        />
-      </Tabs>
-    </View>
+    </WardrobeProvider>
   );
 }

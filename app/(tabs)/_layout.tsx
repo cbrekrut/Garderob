@@ -9,9 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 export default function RootLayout() {
   return (
     <WardrobeProvider>
-      <View style={tw`flex-1 bg-[#f5f5f5]`}>
+      <View style={tw`flex-1 bg-[#ffffff]`}>
         {/* Header с фоном #f5f5f5 и текстом слева */}
-        <View style={tw`h-16 bg-[#f5f5f5] flex-row items-center px-4 border-b border-gray-300`}>
+        <View style={tw`h-16 bg-[#ffffff] flex-row items-center px-4 border-b border-gray-300`}>
           <Text style={tw`text-2xl font-bold text-black`}>AI Stylist</Text>
         </View>
 
@@ -42,8 +42,8 @@ export default function RootLayout() {
                 <View style={tw`relative`}>
                   <View
                     style={[
-                      tw`absolute -top-11 left-1/2 w-16 h-16 rounded-full bg-black flex justify-center items-center shadow-xl`,
-                      { transform: [{ translateX: -32 }] },
+                      tw`absolute -top-11 w-16 h-16 rounded-full bg-black flex justify-center items-center shadow-xl`,
+                      { left: '50%', marginLeft: -40 },
                     ]}
                   >
                     <Ionicons name="camera" size={32} color="#fff" />

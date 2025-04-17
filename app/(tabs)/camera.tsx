@@ -1,4 +1,4 @@
-// app/camera/index.tsx
+// CameraScreen.tsx
 import React, { useState, useContext } from 'react';
 import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -61,29 +61,61 @@ export default function CameraScreen() {
             resizeMode="cover"
           />
           <Text style={tw`text-lg font-medium text-gray-800 mb-2`}>Выберите бренд:</Text>
-          <View style={tw`border border-gray-300 rounded mb-4`}>
+          <View style={tw`border border-gray-300 rounded-lg overflow-hidden mb-4`}>
             <Picker
               selectedValue={brand}
               onValueChange={(itemValue) => setBrand(itemValue)}
-              style={tw`h-12 w-full`}
+              style={tw`h-14 w-full bg-white`}
             >
               <Picker.Item label="Выберите бренд" value="" />
-              <Picker.Item label="Brand 1" value="brand1" />
-              <Picker.Item label="Brand 2" value="brand2" />
-              <Picker.Item label="Brand 3" value="brand3" />
+              <Picker.Item label="The North Face" value="the_north_face" />
+              <Picker.Item label="Columbia Sportswear" value="columbia" />
+              <Picker.Item label="Patagonia" value="patagonia" />
+              <Picker.Item label="Arc'teryx" value="arcteryx" />
+              <Picker.Item label="Marmot" value="marmot" />
+              <Picker.Item label="REI Co-op" value="rei" />
+              <Picker.Item label="Mountain Hardwear" value="mountain_hardwear" />
+              <Picker.Item label="Eddie Bauer" value="eddie_bauer" />
+              <Picker.Item label="Helly Hansen" value="helly_hansen" />
+              <Picker.Item label="Timberland" value="timberland" />
+              <Picker.Item label="Carhartt" value="carhartt" />
+              <Picker.Item label="Mountain Warehouse" value="mountain_warehouse" />
+              <Picker.Item label="Jack Wolfskin" value="jack_wolfskin" />
+              <Picker.Item label="Outdoor Research" value="outdoor_research" />
+              <Picker.Item label="Burton" value="burton" />
+              <Picker.Item label="Under Armour" value="under_armour" />
+              <Picker.Item label="Salomon" value="salomon" />
+              <Picker.Item label="Nike ACG" value="nike_acg" />
             </Picker>
           </View>
           <Text style={tw`text-lg font-medium text-gray-800 mb-2`}>Выберите категорию:</Text>
-          <View style={tw`border border-gray-300 rounded mb-4`}>
+          <View style={tw`border border-gray-300 rounded-lg overflow-hidden mb-4`}>
             <Picker
               selectedValue={category}
               onValueChange={(itemValue) => setCategory(itemValue)}
-              style={tw`h-12 w-full`}
+              style={tw`h-14 w-full bg-white`}
             >
               <Picker.Item label="Выберите категорию" value="" />
-              <Picker.Item label="Category 1" value="cat1" />
-              <Picker.Item label="Category 2" value="cat2" />
-              <Picker.Item label="Category 3" value="cat3" />
+              <Picker.Item label="Tops" value="tops" />
+              <Picker.Item label="Bottoms" value="bottoms" />
+              <Picker.Item label="Outerwear" value="outerwear" />
+              <Picker.Item label="Dresses" value="dresses" />
+              <Picker.Item label="Footwear" value="footwear" />
+              <Picker.Item label="Accessories" value="accessories" />
+              <Picker.Item label="Activewear" value="activewear" />
+              <Picker.Item label="Swimwear" value="swimwear" />
+              <Picker.Item label="Underwear" value="underwear" />
+              <Picker.Item label="Loungewear" value="loungewear" />
+              <Picker.Item label="Jeans" value="jeans" />
+              <Picker.Item label="Sweaters" value="sweaters" />
+              <Picker.Item label="Jackets" value="jackets" />
+              <Picker.Item label="Skirts" value="skirts" />
+              <Picker.Item label="Shorts" value="shorts" />
+              <Picker.Item label="Blazers" value="blazers" />
+              <Picker.Item label="Suits" value="suits" />
+              <Picker.Item label="Scarves" value="scarves" />
+              <Picker.Item label="Gloves" value="gloves" />
+              <Picker.Item label="Hats" value="hats" />
             </Picker>
           </View>
           <TouchableOpacity

@@ -17,7 +17,7 @@ const WardrobeGrid: React.FC<WardrobeGridProps> = ({ items }) => {
   if (items.length === 0) {
     return (
       <Text style={tw`w-full text-center mt-8 text-lg text-gray-600`}>
-        Нет сохраненных образов
+        Нет сохраненной одежды :(
       </Text>
     );
   }
@@ -37,11 +37,11 @@ const WardrobeGrid: React.FC<WardrobeGridProps> = ({ items }) => {
             />
           </View>
           <View style={tw`p-2`}>
-            <Text style={tw`text-sm font-semibold text-gray-800`}>
-              Бренд: {item.brand}
+            <Text style={tw`text-sm font-bold text-gray-800`}>
+              {item.brand}
             </Text>
-            <Text style={tw`text-sm text-gray-700`}>
-              Категория: {item.category}
+            <Text style={tw`text-sm font-semibold text-gray-700`}>
+             {item.category}
             </Text>
           </View>
         </View>
